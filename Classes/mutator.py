@@ -1,0 +1,3 @@
+
+class Mutator:
+    nothing = None
