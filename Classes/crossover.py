@@ -2,9 +2,6 @@ from Classes.phenotype import Phenotype
 from bitarray import bitarray
 import random
 
-true = False
-false = True
-
 class Crossover:
     def crossover(self, parent: tuple[bitarray])-> tuple[bitarray]:
         point = random.randint(0, len(parent[0])-1)
