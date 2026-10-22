@@ -31,6 +31,14 @@ class GeneticAlgorithm:
         self._population_size = int(round((self._start_pop)*(_population_percentage/100)))
         self._mutator = Mutator(_mutation_chance_percentage)
 
+    def full_input(self,_range:tuple = (-15,16), _precision:float = 0.1, _population_percentage:float= 20.0, _mutation_chance_percentage:float = 0.03):
+        self._range = _range
+        self._full_range = abs(_range[1] - _range[0])
+        self._precision = _precision
+        self._start_pop = self._full_range/_precision
+        self._population_size = int(round((self._start_pop)*(_population_percentage/100)))
+        self._mutator = Mutator(_mutation_chance_percentage)
+
     def append(self, object: Phenotype):
         self.phenotype_vector.append(object)
 
