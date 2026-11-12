@@ -23,7 +23,7 @@ class Phenotype:
 
     def calculate_value(self,left_border:float,precision:float):
         self._calculate_index()
-        self.value = self.index* precision - abs(left_border)
+        self.value = self.index* precision + left_border
 
     def __str__(self):
         return f"i: {self.index}, v: {self.value}, g: {self.genes.unpack(zero=b'0',one=b'1')}, f: {self.fitness}, c: {self.coefficient}"
