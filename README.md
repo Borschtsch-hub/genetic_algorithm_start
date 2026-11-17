@@ -1,14 +1,14 @@
 # Genetic algorithm solution
 
-Easy genetical algorithm for finding local minimum in polynomial functions of 1 variable
+Genetical algorithm for finding local minimum in polynomial functions of multiple variables
 
 Built using python 3.13 and bitarray library
 
-# Basic formula
+## Basic formula
 
-$$f(x) = 0.2x^4 + 0.3x^3 - 6.8x^2 - 7.2x + 50$$
+$$f(x, y) = 3(x - 0.5)^2 + 2(y - 0.5)^2 \sin^2(x)$$
 
-# Structure
+## Structure
 
 ├── Classes\
 │   ├── crossover.py\
@@ -16,7 +16,8 @@ $$f(x) = 0.2x^4 + 0.3x^3 - 6.8x^2 - 7.2x + 50$$
 │   ├── mutator.py\
 │   └── phenotype.py\
 └── main.py\
+└── gui.py\
 
-# Extra
+## Extra
 
-[Desmos link](https://www.desmos.com/calculator/1arkjjtk6f?tour=sliders&lang=en)
+[Desmos link](https://www.desmos.com/3d/b6pb0rxpfy?tour=sliders)
