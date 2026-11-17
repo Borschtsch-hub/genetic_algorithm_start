@@ -4,6 +4,8 @@ from tkinter import ttk
 from Classes.genetic_algorithm import GeneticAlgorithm
 from gui import GUI
 
+import math
+
 #for this program to work you need to have python 3.13.14 and to install 
 #bitarray, numpy, matplotlib libraries
 
@@ -11,9 +13,15 @@ from gui import GUI
 #https://www.desmos.com/calculator/1arkjjtk6f?tour=sliders&lang=en
 
 class GeneticAlgorithmMain(GeneticAlgorithm):
-    def _fitness(self, x):
-        return 0.2 * x**4 + 0.3 * x**3 -6.8 * x**2 -7.2 * x + 50
-
+    def _fitness(self, coords: list[float]):
+        x, y = coords[0], coords[1]
+        
+        A, B = 3, 2
+        a, b = 0.5, 0.5
+        n, m, l = 2, 2, 2
+        
+        return A * ((x - a) ** n) + B * ((y - b) ** m) * (math.sin(x) ** l)
+    
 if __name__ == "__main__":
 
     root = tk.Tk()

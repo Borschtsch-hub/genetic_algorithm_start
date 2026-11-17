@@ -3,27 +3,36 @@ from bitarray.util import ba2int
 from abc import abstractmethod
 
 class Phenotype:   
-    def __init__(self, index:int, genes:bitarray, ):
-        self.index = index
+    def __init__(self, genes: bitarray):
         self.genes = genes
-        value = None
-        fitness = None
-        coefficient = None
+        self.indices = []
+        self.values = []
+        self.fitness = None
+        self.coefficient = None
     
-
     def load_phenotype(self, fitness):
         self.fitness = fitness
         try:
-            self.coefficient = 1/abs(fitness)
+            self.coefficient = 1 / abs(fitness)
         except ZeroDivisionError:
             self.coefficient = 1.0
 
-    def _calculate_index(self):
-        self.index = ba2int(self.genes)
+    def calculate_values(self, left_borders: list[float], precisions: list[float], bit_lengths: list[int]):
+        self.indices.clear()
+        self.values.clear()
+        start_idx = 0
+        
+        for i, length in enumerate(bit_lengths):
 
-    def calculate_value(self,left_border:float,precision:float):
-        self._calculate_index()
-        self.value = self.index* precision + left_border
+            chunk = self.genes[start_idx : start_idx + length]
+            idx = ba2int(chunk)
+            self.indices.append(idx)
+            
+            # Map index to the coordinate value within the given range and precision
+            val = left_borders[i] + (idx * precisions[i])
+            self.values.append(val)
+            
+            start_idx += length
 
     def __str__(self):
-        return f"i: {self.index}, v: {self.value}, g: {self.genes.unpack(zero=b'0',one=b'1')}, f: {self.fitness}, c: {self.coefficient}"
+        return f"indices: {self.indices}, values: {[round(v, 4) for v in self.values]}, f: {self.fitness:.4f}, c: {self.coefficient:.4f}"
