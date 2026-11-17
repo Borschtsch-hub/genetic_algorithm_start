@@ -18,13 +18,12 @@ class Phenotype:
             self.coefficient = 1.0
 
     def calculate_values(self, left_borders: list[float], precisions: list[float], bit_lengths: list[int]):
-        """
-        Slices the concatenated bitarray chromosome into dimension-specific chunks,
-        converts each chunk to an integer index, and maps it to the real coordinate value.
-        """
+        self.indices.clear()
+        self.values.clear()
         start_idx = 0
+        
         for i, length in enumerate(bit_lengths):
-            # Extract the binary chunk for the i-th dimension
+
             chunk = self.genes[start_idx : start_idx + length]
             idx = ba2int(chunk)
             self.indices.append(idx)

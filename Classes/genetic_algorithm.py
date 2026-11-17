@@ -79,15 +79,16 @@ class GeneticAlgorithm:
         return f"Dimensions: {self.dimensions}\nRanges: {self._ranges}\nPrecisions: {self._precisions}\nBit lengths per dim: {self._bit_lengths}\nPopulation size: {self._population_size}"
     
     def create_start_pop(self):
-        total_bits = sum(self._bit_lengths)
-        max_steps = int(max(self._dimension_start_pops))
-        
-        bit_array = bitarray(total_bits)
-        bit_array.setall(0)
-        
-        for i in range(0, max_steps):
-            self.append(Phenotype(copy.copy(bit_array)))
-            _bit_move(bit_array)        
+        self.phenotype_vector.clear()
+        for _ in range(self._population_size):
+            chromosome = bitarray()
+            for i in range(self.dimensions):
+                max_idx = int(self._dimension_start_pops[i])
+                rand_idx = random.randint(0, max_idx)
+                # Format integer index to fixed-width binary string for this dimension
+                bits = bin(rand_idx)[2:].zfill(self._bit_lengths[i])
+                chromosome.extend(bits)
+            self.append(Phenotype(chromosome))
 
     def out(self):
         retstr = ""

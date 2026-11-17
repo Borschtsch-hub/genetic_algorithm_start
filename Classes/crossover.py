@@ -22,14 +22,12 @@ class Crossover:
             return
 
         current_idx = 0
-        swap = random.choice([True, False])
-        
         for length in bit_lengths:
-            next_idx = current_idx + length
-            if swap:
-                temp = p1[current_idx:next_idx].copy()
-                p1[current_idx:next_idx] = p2[current_idx:next_idx]
-                p2[current_idx:next_idx] = temp
-            current_idx = next_idx
-            swap = not swap
+            if length > 1:
+                cut = random.randint(1, length - 1)
+                p1[current_idx + cut : current_idx + length], p2[current_idx + cut : current_idx + length] = (
+                    p2[current_idx + cut : current_idx + length].copy(),
+                    p1[current_idx + cut : current_idx + length].copy(),
+                )
+            current_idx += length
         

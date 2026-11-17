@@ -171,7 +171,6 @@ class GUI():
             return
 
         self.algorithm.new_generation()
-
         self.log_text.insert(END, f"--- Generation {self.algorithm.generation} ---\n")
         self.log_text.insert(END, f"Best: {self.algorithm.local_minimum}\n\n")
         self.log_text.see(END)

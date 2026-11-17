@@ -14,7 +14,13 @@ import math
 
 class GeneticAlgorithmMain(GeneticAlgorithm):
     def _fitness(self, coords: list[float]):
-        return math.pow(sum(x**2 for x in coords), 1.0 / 3.0)
+        x, y = coords[0], coords[1]
+        
+        A, B = 3, 2
+        a, b = 0.5, 0.5
+        n, m, l = 2, 2, 2
+        
+        return A * ((x - a) ** n) + B * ((y - b) ** m) * (math.sin(x) ** l)
     
 if __name__ == "__main__":
 
